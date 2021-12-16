@@ -1,0 +1,7 @@
+{
+  "name": "fumigaciones",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
