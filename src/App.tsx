@@ -22,24 +22,32 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-
+import ViewApp from './views/app'
+import ViewUser from './views/users'
+import Error from './views/error'
 setupIonicReact();
 
 const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/page/Inbox" />
-            </Route>
-            <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route>
-          </IonRouterOutlet>
-        </IonSplitPane>
+        <Route
+          path="/"
+          exact
+          render={props => <ViewApp {...props} />}
+        />
+        <Route 
+          path="/app"
+          render={ props => <ViewApp {...props}/>}
+        />
+        <Route 
+          path="/user"
+          render={ props => <ViewUser {...props}/>}
+        />
+        <Route
+          path={"/error"}
+          render={ props => <Error {...props} />}
+        />
       </IonReactRouter>
     </IonApp>
   );
