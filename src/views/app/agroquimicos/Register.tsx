@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { IonButton, IonItem, IonCard, IonCardContent, IonContent, IonLabel, IonIcon, IonInput, IonPage, IonSelect, IonSelectOption } from '@ionic/react';
-import { createOutline, addOutline } from 'ionicons/icons';
+import { addOutline } from 'ionicons/icons';
 class Register extends Component {
   constructor(props: any){
     super(props)

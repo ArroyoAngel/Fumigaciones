@@ -52,9 +52,6 @@ class List extends Component {
                       <IonLabel>Editar</IonLabel>
                     </IonChip>
                   </IonItem>
-                  <IonItemOptions>
-                    <IonItemOption>EDITAR</IonItemOption>
-                  </IonItemOptions>
                 </IonItemSliding>
               </IonList>
               <IonButton shape="round" color='tertiary' href='/app/agroquimicos/register'>
