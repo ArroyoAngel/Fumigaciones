@@ -32,7 +32,8 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
-
+  let parent: any = location.pathname.split('/')
+  parent = `/${parent[1]}/${parent[2]}`
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
@@ -40,19 +41,19 @@ const Menu: React.FC = () => {
           <IonListHeader>Inbox</IonListHeader>
           <IonNote>hi@ionicframework.com</IonNote>
           <IonMenuToggle key={0} autoHide={false}>
-            <IonItem className={location.pathname === '/app/agroquimicos/list' ? 'selected' : ''} routerLink={'/app/agroquimicos/list'} routerDirection="none" lines="none" detail={false}>
+            <IonItem className={parent === '/app/agroquimicos' ? 'selected' : ''} href={'/app/agroquimicos/list'}  detail={false}>
               <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
               <IonLabel>{'Agroquimicos'}</IonLabel>
             </IonItem>
-            <IonItem className={location.pathname === '/app/terrenos/list' ? 'selected' : ''} routerLink={'/app/terrenos/list'} routerDirection="none" lines="none" detail={false}>
+            <IonItem className={parent === '/app/terrenos' ? 'selected' : ''} href={'/app/terrenos/list'}  detail={false}>
               <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
               <IonLabel>{'Terrenos'}</IonLabel>
             </IonItem>
-            <IonItem className={location.pathname === '/app/operaciones/list' ? 'selected' : ''} routerLink={'/app/operaciones/list'} routerDirection="none" lines="none" detail={false}>
+            <IonItem className={parent === '/app/operaciones' ? 'selected' : ''} href={'/app/operaciones/list'}  detail={false}>
               <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
               <IonLabel>{'Fumigacion'}</IonLabel>
             </IonItem>
-            <IonItem className={location.pathname === '/page/Inbox' ? 'selected' : ''} routerLink={'/page/Inbox'} routerDirection="none" lines="none" detail={false}>
+            <IonItem className={parent === '/page/Inbox' ? 'selected' : ''} href={'/page/Inbox'}  detail={false}>
               <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
               <IonLabel>{'Inbox'}</IonLabel>
             </IonItem>
