@@ -8,15 +8,7 @@ class List extends Component {
   }
   render(): React.ReactNode {
     return (
-      <IonPage>
-        <IonContent fullscreen>
-          <IonHeader collapse="condense">
-            <IonToolbar>
-              <IonTitle size="large">TITULOS2</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-        </IonContent>
-      </IonPage>
+      <h1>TERRENOS LIST</h1>
     )
   }
 }

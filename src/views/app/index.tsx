@@ -6,7 +6,8 @@ import Menu from '../../components/Menu';
 import Page from '../../pages/Page';
 
 import Agroquimicos from './agroquimicos';
-import List from './agroquimicos/List';
+import Terrenos from './terrenos';
+import Operaciones from './operaciones';
 class App extends Component {
   match: any = {}
   constructor(props: any){
@@ -23,6 +24,14 @@ class App extends Component {
           <Route 
             path={`${this.match.url}/agroquimicos`}
             render={ props => <Agroquimicos {...props}/>}
+          />
+          <Route 
+            path={`${this.match.url}/terrenos`}
+            render={ props => <Terrenos {...props}/>}
+          />
+          <Route 
+            path={`${this.match.url}/operaciones`}
+            render={ props => <Operaciones {...props}/>}
           />
         </IonRouterOutlet>
       </IonSplitPane>

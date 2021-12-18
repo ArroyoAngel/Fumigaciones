@@ -3,7 +3,7 @@ import { IonRouterOutlet, IonButtons, IonHeader, IonMenuButton, IonTitle, IonToo
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import List from './List'
-import Register from './Register'
+import Form from './Form'
 class Agroquimicos extends Component {
   match: any = {}
   constructor(props: any){
@@ -29,7 +29,7 @@ class Agroquimicos extends Component {
         />
         <Route 
           path={`${this.match.url}/register`}
-          render={ props => <Register {...props} />}
+          render={ props => <Form {...props} />}
         />
       </IonRouterOutlet>
     </IonReactRouter>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IonRouterOutlet, IonButtons, IonHeader, IonMenuButton, IonTitle, IonToolbar  } from '@ionic/react';
+import { IonRouterOutlet, IonButtons, IonHeader, IonMenuButton, IonTitle, IonToolbar } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import List from './List'

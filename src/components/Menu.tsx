@@ -40,6 +40,18 @@ const Menu: React.FC = () => {
           <IonListHeader>Inbox</IonListHeader>
           <IonNote>hi@ionicframework.com</IonNote>
           <IonMenuToggle key={0} autoHide={false}>
+            <IonItem className={location.pathname === '/app/agroquimicos/list' ? 'selected' : ''} routerLink={'/app/agroquimicos/list'} routerDirection="none" lines="none" detail={false}>
+              <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
+              <IonLabel>{'Agroquimicos'}</IonLabel>
+            </IonItem>
+            <IonItem className={location.pathname === '/app/terrenos/list' ? 'selected' : ''} routerLink={'/app/terrenos/list'} routerDirection="none" lines="none" detail={false}>
+              <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
+              <IonLabel>{'Terrenos'}</IonLabel>
+            </IonItem>
+            <IonItem className={location.pathname === '/app/operaciones/list' ? 'selected' : ''} routerLink={'/app/operaciones/list'} routerDirection="none" lines="none" detail={false}>
+              <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
+              <IonLabel>{'Fumigacion'}</IonLabel>
+            </IonItem>
             <IonItem className={location.pathname === '/page/Inbox' ? 'selected' : ''} routerLink={'/page/Inbox'} routerDirection="none" lines="none" detail={false}>
               <IonIcon slot="start" ios={mailOutline} md={mailSharp} />
               <IonLabel>{'Inbox'}</IonLabel>
