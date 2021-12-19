@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { IonButton, IonItem, IonCard, IonCardContent, IonContent, IonLabel, IonIcon, IonInput, IonPage, IonSelect, IonSelectOption } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
+
+import Agroquimicos from '../../../models/Agroquimicos'
 class Register extends Component {
   constructor(props: any){
     super(props)
-    console.log("AGROQUIMICOS REGISTER:",props)
   }
   public state = {
     name: '',
     type: ''
+  }
+  register(){
+    Agroquimicos.register(this.state)
   }
   render(): React.ReactNode {
     return (
@@ -26,7 +30,7 @@ class Register extends Component {
                 <IonSelectOption value="abono">Abono</IonSelectOption>
                 <IonSelectOption value="otros">Otros</IonSelectOption>
               </IonSelect>
-              <IonButton shape="round" color='tertiary'  onIonFocus={()=>console.log(this.state)}>
+              <IonButton shape="round" color='tertiary' onClick={()=>this.register()}>
                 <IonIcon slot="start" icon={addOutline} />
                 Registrar
               </IonButton>

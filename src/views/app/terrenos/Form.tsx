@@ -4,10 +4,10 @@ import {
   IonCard, IonCardContent,
   IonItem, IonLabel,
   IonInput,
-  IonSelect, IonSelectOption,
   IonButton, IonIcon
 } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
+import Terrenos from '../../../models/Terrenos'
 class Form extends Component {
   constructor(props: any){
     super(props)
@@ -16,6 +16,9 @@ class Form extends Component {
     name: '',
     number: '',
     detail: '',
+  }
+  register(){
+    Terrenos.register(this.state)
   }
   render(): React.ReactNode {
     return (
@@ -35,7 +38,7 @@ class Form extends Component {
                 <IonLabel position="floating">Descripción</IonLabel>
                 <IonInput value={this.state.detail} onIonChange={e => this.setState({detail: e.detail.value})}></IonInput>
               </IonItem>
-              <IonButton shape="round" color='tertiary'  onIonFocus={()=>console.log(this.state)}>
+              <IonButton shape="round" color='tertiary' onClick={()=>this.register()}>
                 <IonIcon slot="start" icon={addOutline} />
                 Registrar
               </IonButton>

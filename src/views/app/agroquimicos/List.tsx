@@ -7,19 +7,26 @@ import {
   IonSearchbar, IonContent,
   IonButton,
   IonCard,
-  IonCardHeader,
   IonCardContent
 } from '@ionic/react';
 import { createOutline, addOutline } from 'ionicons/icons';
-
 import image from '../../../assets/veneno/color.png'
+import Agroquimicos from '../../../models/Agroquimicos'
 
 class List extends Component {
   constructor(props: any){
     super(props)
   }
   public state = {
+    agroquimicos: [],
     searchText: ''
+  }
+  componentDidMount(){
+    Agroquimicos.getAll().then(res=>{
+      this.setState({
+        agroquimicos: res
+      })
+    })
   }
   render(): React.ReactNode {
     return (
@@ -38,20 +45,24 @@ class List extends Component {
 
               <IonList>
                 <IonItemSliding>
-                  <IonItem>
-                    <IonAvatar>
-                      <img src={image} />
-                    </IonAvatar>
-                    <IonLabel>
-                      <h2>Titulo</h2>
-                      <h3>Subtitulo</h3>
-                      <p>Contenido de la lista, que muestra los datos de agroquimico</p>
-                    </IonLabel>
-                    <IonChip>
-                      <IonIcon icon={createOutline} color="dark" />
-                      <IonLabel>Editar</IonLabel>
-                    </IonChip>
-                  </IonItem>
+                  {this.state.agroquimicos.map((agroquimico: any)=>{
+                    return (
+                      <IonItem key={agroquimico.id}>
+                        <IonAvatar>
+                          <img src={image} />
+                        </IonAvatar>
+                        <IonLabel>
+                          <h2>{agroquimico.name}</h2>
+                          <h3>{agroquimico.type}</h3>
+                          <p>Contenido de la lista, que muestra los datos de agroquimico</p>
+                        </IonLabel>
+                        <IonChip onClick={()=>console.log(agroquimico.id)}>
+                          <IonIcon icon={createOutline} color="dark" />
+                          <IonLabel>Editar</IonLabel>
+                        </IonChip>
+                      </IonItem>
+                    )
+                  })}
                 </IonItemSliding>
               </IonList>
               <IonButton shape="round" color='tertiary' href='/app/agroquimicos/register'>

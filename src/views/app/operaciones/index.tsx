@@ -9,7 +9,6 @@ class Agroquimicos extends Component {
   constructor(props: any){
     super(props)
     this.match = props.match
-    console.log(props)
   }
   render(): React.ReactNode {
     return <IonReactRouter>

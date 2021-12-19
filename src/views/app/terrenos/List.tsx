@@ -8,14 +8,22 @@ import {
 } from '@ionic/react';
 import { createOutline, addOutline } from 'ionicons/icons';
 import image from '../../../assets/terreno/color.png'
+import Terrenos from '../../../models/Terrenos'
 
 class List extends Component {
   constructor(props: any){
     super(props)
-    console.log("INGRESO SATISFACTORIO:",props)
   }
   public state = {
-    searchText: ''
+    searchText: '',
+    terrenos: []
+  }
+  componentDidMount(){
+    Terrenos.getAll().then(res=>{
+      this.setState({
+        terrenos: res
+      })
+    })
   }
   render(): React.ReactNode {
     return (
@@ -34,20 +42,24 @@ class List extends Component {
 
               <IonList>
                 <IonItemSliding>
-                  <IonItem>
-                    <IonAvatar>
-                      <img src={image} />
-                    </IonAvatar>
-                    <IonLabel>
-                      <h2>Titulo</h2>
-                      <h3>Subtitulo</h3>
-                      <p>Contenido de la lista, que muestra los datos de agroquimico</p>
-                    </IonLabel>
-                    <IonChip>
-                      <IonIcon icon={createOutline} color="dark" />
-                      <IonLabel>Editar</IonLabel>
-                    </IonChip>
-                  </IonItem>
+                  {this.state.terrenos.map((terreno: any)=>{
+                    return (
+                      <IonItem key={terreno.id}>
+                        <IonAvatar>
+                          <img src={image} />
+                        </IonAvatar>
+                        <IonLabel>
+                          <h2>{terreno.name}</h2>
+                          <h3>Número: {terreno.number}</h3>
+                          <p>{terreno.detail}</p>
+                        </IonLabel>
+                        <IonChip onClick={()=>console.log(terreno.id)}>
+                          <IonIcon icon={createOutline} color="dark" />
+                          <IonLabel>Editar</IonLabel>
+                        </IonChip>
+                      </IonItem>
+                    )
+                  })}
                 </IonItemSliding>
               </IonList>
               <IonButton shape="round" color='tertiary' href='/app/terrenos/register'>

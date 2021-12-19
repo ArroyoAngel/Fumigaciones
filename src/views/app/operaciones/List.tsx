@@ -7,14 +7,23 @@ import {
   IonButton,
 } from '@ionic/react';
 import { bonfireOutline, addOutline } from 'ionicons/icons';
-import image from '../../../assets/terreno/color.png'
+import image from '../../../assets/fumigacion/color.png'
 
+import Operaciones from '../../../models/Operaciones'
 class List extends Component {
   constructor(props: any){
     super(props)
   }
   public state = {
+    operaciones: [],
     searchText: ''
+  }
+  componentDidMount(){
+    Operaciones.getAll().then(res=>{
+      this.setState({
+        operaciones: res
+      })
+    })
   }
   render(): React.ReactNode {
     return (
@@ -33,20 +42,24 @@ class List extends Component {
 
               <IonList>
                 <IonItemSliding>
-                  <IonItem>
-                    <IonAvatar>
-                      <img src={image} />
-                    </IonAvatar>
-                    <IonLabel>
-                      <h2>Titulo</h2>
-                      <h3>Subtitulo</h3>
-                      <p>Contenido de la lista, que muestra los datos de agroquimico</p>
-                    </IonLabel>
-                    <IonChip>
-                      <IonIcon icon={bonfireOutline} color="dark" />
-                      <IonLabel>Fumigar</IonLabel>
-                    </IonChip>
-                  </IonItem>
+                  {this.state.operaciones.map((operacion: any)=>{
+                    return (
+                      <IonItem key={operacion.id}>
+                        <IonAvatar>
+                          <img src={image} />
+                        </IonAvatar>
+                        <IonLabel>
+                          <h2>{operacion.location.name}</h2>
+                          <h3>{operacion.caldo.map((agroquimico: any)=>(`${agroquimico.name}, `))}</h3>
+                          <p>{operacion.observations}</p>
+                        </IonLabel>
+                        <IonChip onClick={()=>console.log(operacion.id)}>
+                            <IonIcon icon={bonfireOutline} color="dark" />
+                          <IonLabel>Fumigar</IonLabel>
+                        </IonChip>
+                      </IonItem>
+                    )
+                  })}
                 </IonItemSliding>
               </IonList>
               <IonButton shape="round" color='tertiary' href='/app/operaciones/register'>

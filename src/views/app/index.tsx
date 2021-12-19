@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
-import Menu from '../../components/Menu';
+import Menu from '../../components/SideMenu/Menu';
 import Page from '../../pages/Page';
 
 import Agroquimicos from './agroquimicos';
@@ -13,7 +13,6 @@ class App extends Component {
   constructor(props: any){
     super(props)
     this.match = props.match
-    console.log("APP",this.match)
   }
   render(): React.ReactNode {
     return <IonReactRouter>
