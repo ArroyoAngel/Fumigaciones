@@ -81,17 +81,24 @@ export class Firebase {
         .catch((error) => {
             console.log("Error adding user")
         });
+        
+        localStorage.setItem('user', JSON.stringify(credential))
         return credential
     }
     
     async authRegisterByProviderGoogle(): Promise<any>{
+        let credential: any = null
         await signInWithPopup(this.auth, this.provider)
         .then((userCredential) => {
             console.log("Add success")
+            credential = userCredential.user
         })
         .catch((error) => {
             console.log("Error adding user")
         });
+        
+        localStorage.setItem('user', JSON.stringify(credential))
+        return credential
     }
     async authLoginByEmail(email: string, password: string): Promise<any>{
         await signInWithEmailAndPassword(this.auth, email, password)

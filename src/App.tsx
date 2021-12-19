@@ -1,3 +1,4 @@
+import React, { Component } from 'react'
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
@@ -27,14 +28,41 @@ import ViewUser from './views/users'
 import Error from './views/error'
 setupIonicReact();
 
+class AuthRoute extends Component<{path: string, authUser: any}>{
+  isDemo: any /*= {
+    email: 'demo',
+    password: 'demo123',
+  }*/
+  constructor(props: any){
+    super(props)
+  }
+  render(): React.ReactNode {
+      return (<Route
+        path={this.props.path}
+        render={props =>
+          this.props.authUser || this.isDemo ? (
+            <ViewApp {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/user/login',
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />)
+  }
+}
+
 const App: React.FC = () => {
+  let loginUser = localStorage.getItem('user')
   return (
     <IonApp>
       <IonReactRouter>
-        <Route
-          path="/"
-          exact
-          render={props => <ViewApp {...props} />}
+        <AuthRoute 
+          path={'/app'}
+          authUser={loginUser}
         />
         <Route 
           path="/app"
