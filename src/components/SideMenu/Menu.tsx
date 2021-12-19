@@ -32,14 +32,21 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
+  const user: any = localStorage.getItem('user')
+  const credential: any = localStorage.getItem('credential')
+  const loginUser = {
+    ...JSON.parse(user),
+    ...JSON.parse(credential),
+  }
+  console.log("ESTO ES LOGINUSER", loginUser)
   let parent: any = location.pathname.split('/')
   parent = `/${parent[1]}/${parent[2]}`
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonListHeader>{loginUser.bussines}</IonListHeader>
+          <IonNote>{loginUser.email}</IonNote>
           <IonMenuToggle key={0} autoHide={false}>
             <IonItem className={parent === '/app/agroquimicos' ? 'selected' : ''} href={'/app/agroquimicos/list'}  detail={false}>
               <IonIcon slot="start" ios={mailOutline} md={mailSharp} />

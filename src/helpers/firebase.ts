@@ -47,15 +47,16 @@ export class Firebase {
         });
         return result
     }
-    async getDocumentByUid(nameCollection: string): Promise<any>{
-        const docRef = await doc(this.db, nameCollection, "23fj6evyO6eGOd169yjTYIIWwFH3");
+    async getDocumentByUid(nameCollection: string, uid: any): Promise<any>{
+        const docRef = await doc(this.db, nameCollection, uid);
         const docSnap = await getDoc(docRef);
+        let result: any
         if(docSnap.exists()){
-            console.log("Document data:", docSnap.data());
+            result = docSnap.data();
         }else{
             console.log(nameCollection+" is empty")
         }
-        return null
+        return result
     }
     async updateDocument(nameCollection: string, payload: any, uid: string): Promise<void>{
         const result = await updateDoc(doc(this.db, nameCollection, uid), payload);
@@ -81,8 +82,9 @@ export class Firebase {
         .catch((error) => {
             console.log("Error adding user")
         });
-        
-        localStorage.setItem('user', JSON.stringify(credential))
+        localStorage.setItem('credential', JSON.stringify(credential))
+        const user = await this.getDocumentByUid('usuarios', credential.uid)
+        localStorage.setItem('user', JSON.stringify(user))
         return credential
     }
     
@@ -96,17 +98,23 @@ export class Firebase {
         .catch((error) => {
             console.log("Error adding user")
         });
-        
-        localStorage.setItem('user', JSON.stringify(credential))
+        localStorage.setItem('credential', JSON.stringify(credential))
+        const user = await this.getDocumentByUid('usuarios', credential.uid)
+        localStorage.setItem('user', JSON.stringify(user))
         return credential
     }
     async authLoginByEmail(email: string, password: string): Promise<any>{
+        let credential: any = null
         await signInWithEmailAndPassword(this.auth, email, password)
         .then((userCredential) => {
             console.log("Add success")
+            credential = userCredential.user
         })
         .catch((error) => {
             console.log("Error adding user")
         });
+        localStorage.setItem('credential', JSON.stringify(credential))
+        const user = await this.getDocumentByUid('usuarios', credential.uid)
+        localStorage.setItem('user', JSON.stringify(user))
     }
 }

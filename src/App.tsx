@@ -56,7 +56,7 @@ class AuthRoute extends Component<{path: string, authUser: any}>{
 }
 
 const App: React.FC = () => {
-  let loginUser = localStorage.getItem('user')
+  let loginUser = localStorage.getItem('credential')
   return (
     <IonApp>
       <IonReactRouter>

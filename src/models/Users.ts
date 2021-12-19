@@ -25,6 +25,7 @@ export class User extends Account{
                 break
         }
         this.firebase.registerDocument("usuarios", payload, credential.uid)
+        
         console.log("Registro completado")
     }
     async getAll(): Promise<Array<any>>{
